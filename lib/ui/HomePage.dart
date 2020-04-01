@@ -18,9 +18,9 @@ class home_page extends State<HomePage>{
 
   void calculateBmi (){
     setState(() {
-      if ((heightFigure.text.isNotEmpty && int.parse(heightFigure.text) > 0) && (weightFigure.text.isNotEmpty && int.parse(weightFigure.text) > 0))
+      if ((heightFigure.text.isNotEmpty && double.parse(heightFigure.text) > 0) && (weightFigure.text.isNotEmpty && double.parse(weightFigure.text) > 0))
       {
-        finalResult = 703 * (int.parse(weightFigure.text) / ((int.parse(heightFigure.text) * 12) * (int.parse(heightFigure.text) * 12)));
+        finalResult = 703 * (double.parse(weightFigure.text) / ((double.parse(heightFigure.text) * 12) * (double.parse(heightFigure.text) * 12)));
         finalText = "Your BMI: ${finalResult.toStringAsFixed(2)} kg/m(squared)";
 
         if (finalResult < 25){
