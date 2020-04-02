@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget{
 class home_page extends State<HomePage>{
   final TextEditingController heightFigure = new TextEditingController();
   final TextEditingController weightFigure = new TextEditingController();
+  final TextEditingController age = new TextEditingController();
   double finalResult;
   String finalText = "Please enter values";
   String analysis = "(enter values to continue)";
@@ -18,7 +19,9 @@ class home_page extends State<HomePage>{
 
   void calculateBmi (){
     setState(() {
-      if ((heightFigure.text.isNotEmpty && double.parse(heightFigure.text) > 0) && (weightFigure.text.isNotEmpty && double.parse(weightFigure.text) > 0))
+      if ((heightFigure.text.isNotEmpty && double.parse(heightFigure.text) > 0)
+          && (weightFigure.text.isNotEmpty && double.parse(weightFigure.text) > 0)
+          && (age.text.isNotEmpty && int.parse(age.text) > 0) )
       {
         finalResult = 703 * (double.parse(weightFigure.text) / ((double.parse(heightFigure.text) * 12) * (double.parse(heightFigure.text) * 12)));
         finalText = "Your BMI: ${finalResult.toStringAsFixed(1)} kg/m(squared)";
@@ -53,7 +56,7 @@ class home_page extends State<HomePage>{
               ),
             ),
             centerTitle: true,
-            backgroundColor: Colors.black38,
+            backgroundColor: Colors.pinkAccent,
           ),
           backgroundColor: Colors.white,
           body: new ListView(
@@ -66,16 +69,17 @@ class home_page extends State<HomePage>{
                           width: 100,
                           height: 80,),
                         new Container(
-                          color: Colors.grey.shade400,
+                          color: Colors.grey.shade300,
                           width: 310,
                           height: 243,
                           child: new Column(
                             children: <Widget>[
                               new TextField(
-                                controller: null,
+                                controller: age,
                                 decoration: new InputDecoration(
                                     labelText: "Age",
-                                    icon: new Icon(Icons.person_outline)
+                                    icon: new Icon(Icons.person_outline),
+                                    hintText: "e.g 34"
                                 ),
                                 keyboardType: TextInputType.number,
                               ),
@@ -83,7 +87,8 @@ class home_page extends State<HomePage>{
                                 controller: heightFigure,
                                 decoration: new InputDecoration(
                                     labelText: "Height in feet",
-                                    icon: new Icon(Icons.insert_chart)
+                                    icon: new Icon(Icons.insert_chart),
+                                    hintText: "e.g 6.5"
                                 ),
                                 keyboardType: TextInputType.number,
                               ),
@@ -91,7 +96,8 @@ class home_page extends State<HomePage>{
                                 controller: weightFigure,
                                 decoration: new InputDecoration(
                                     labelText: "Weight in lb",
-                                    icon: new Icon(Icons.line_weight)
+                                    icon: new Icon(Icons.line_weight),
+                                    hintText: "e.g 180"
                                 ),
                                 keyboardType: TextInputType.number,
                               ),
@@ -99,7 +105,7 @@ class home_page extends State<HomePage>{
                               new RaisedButton(onPressed: calculateBmi,
                                 child: new Text("Calculate",
                                   style: new TextStyle(color: Colors.white),),
-                                color: Colors.black38,)
+                                color: Colors.pinkAccent,)
                             ],
                           ),
                         ),
@@ -107,7 +113,7 @@ class home_page extends State<HomePage>{
                           alignment: Alignment.center,
                           child: new Text(finalText,
                             style: new TextStyle(
-                                color: Colors.blue,
+                                color: Colors.blueAccent,
                                 fontStyle: FontStyle.italic,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500
@@ -118,7 +124,7 @@ class home_page extends State<HomePage>{
                         new Container(
                           alignment: Alignment.center,
                           child: new Text(analysis,
-                            style: new TextStyle(color: Colors.black38,
+                            style: new TextStyle(color: Colors.pinkAccent,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w900),),
                         ),
