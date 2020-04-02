@@ -14,19 +14,22 @@ class home_page extends State<HomePage>{
   double finalResult;
   String finalText = "Please enter values";
   String analysis = "(enter values to continue)";
-  var Category = ["Healthy", "Overweight", "Obese"];
+  var Category = ["Healthy", "Overweight", "Obese","Underweight"];
 
   void calculateBmi (){
     setState(() {
       if ((heightFigure.text.isNotEmpty && double.parse(heightFigure.text) > 0) && (weightFigure.text.isNotEmpty && double.parse(weightFigure.text) > 0))
       {
         finalResult = 703 * (double.parse(weightFigure.text) / ((double.parse(heightFigure.text) * 12) * (double.parse(heightFigure.text) * 12)));
-        finalText = "Your BMI: ${finalResult.toStringAsFixed(2)} kg/m(squared)";
+        finalText = "Your BMI: ${finalResult.toStringAsFixed(1)} kg/m(squared)";
 
-        if (finalResult < 25){
-          analysis = Category[0];
+        if (finalResult < 18.5){
+          analysis = Category[Category.length-1];
         }
-        else if(finalResult >= 25 && finalResult <= 29.9){
+        else if(finalResult >= 18.5 && finalResult <= 24.9){
+          analysis = Category[1];
+        }
+        else if(finalResult >= 25.0 && finalResult <= 29.9){
           analysis = Category[1];
         }
         else {
